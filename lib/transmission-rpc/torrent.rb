@@ -118,8 +118,10 @@ module Transmission
       end
 
       # Gets all the torrents
-      def self.all
-        @unprocessed_torrents = Client.request("torrent-get", { :fields => self.fields })['arguments']['torrents']
+      def self.all(requested_fields = nil)
+        requested_fields ||= self.fields
+        requested_fields << 'id' unless requested_fields.include?('id') 
+        @unprocessed_torrents = Client.request("torrent-get", { :fields => requested_fields })['arguments']['torrents']
         @unprocessed_torrents.collect { |torrent| self.new(torrent) }				
       end
 

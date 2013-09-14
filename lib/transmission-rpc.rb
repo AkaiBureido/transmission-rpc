@@ -4,37 +4,37 @@ require 'transmission-rpc/torrent'
 require 'transmission-rpc/client'
 
 module Transmission
-	mattr_writer :configuration
+  mattr_writer :configuration
 
-	def self.configuration
-		@configuration = Transmission::Configuration.new if @configuration.nil?
-		@configuration
-	end
+  def self.configuration
+    @configuration = Transmission::Configuration.new if @configuration.nil?
+    @configuration
+  end
 
   def self.configure
     self.configuration ||= Configuration.new
     yield(configuration)
   end
 
-	def self.connected?
-		Transmission::RPC::Client.connected?
-	end
+  def self.connected?
+    Transmission::RPC::Client.connected?
+  end
 
-	# Convenience method for getting all the torrents
- 	def self.torrents
- 		Transmission::RPC::Torrent.all
- 	end
+  # Convenience method for getting all the torrents
+  def self.torrents(requested_fields = nil)
+    Transmission::RPC::Torrent.all(requested_fields)
+  end
 
-	class Configuration
+  class Configuration
     attr_accessor :ip, :port, :path
 
     def initialize
-			self.ip 				= "127.0.0.1"
-			self.port 			= 9091
-			self.path 			= "transmission/rpc"
+      self.ip 				= "127.0.0.1"
+      self.port 			= 9091
+      self.path 			= "transmission/rpc"
 
-			self
-		end
+      self
+    end
   end
 
 end
