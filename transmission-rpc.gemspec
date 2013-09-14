@@ -4,8 +4,8 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |gem|
   gem.name          = "transmission-rpc"
-  gem.version       = '0.1.1'
-  gem.authors       = ["Jarred Sumner"]
+  gem.version       = '0.1.2'
+  gem.authors       = ["Jarred Sumner, Oleg Utkin"]
   gem.email         = ["jarred@jarredsumner.com"]
   gem.description   = %q{A simple Transmission RPC client for Ruby.}
   gem.summary       = %q{A simple Transmission RPC client for Ruby. It can add torrents, start/stop torrents, remove them to/from Transmission.}
